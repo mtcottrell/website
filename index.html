@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Home page of ACCN Melbourne Australia. Service times, live broadcast, Statement of Faith and service recordings."/>
+
+	<meta name="apple-mobile-web-app-title" content="ACCN Melbourne">
+	<meta name="application-name" content="ACCN Melbourne">
+	<link rel="apple-touch-icon" href="/assets/images/church.jpg">
+	<link rel="shortcut icon" href="/assets/images/church.jpg">
+	<link rel="stylesheet" href="/assets/css/style.css">
+
+	<!-- broadcast player-->
+	<link rel="stylesheet" href="/assets/css/player.css">
+
+	<title>ACCN Melbourne | Live Broadcast Home - Apostolic Christian Church Nazarene Melbourne Australia</title>
+</head>
+
+<body>
+
+
+	<div class="header">
+		<a href="/"><img src="/assets/images/ACCN-logo.png" width="261px" alt="Apostolic Christian Church Nazarene logo" class="logo"/></a>
+		<h3>Mount Cottrell <br/> Melbourne, Australia</h3>
+	</div>
+
+
+	<div class="box">
+		<h2>Our Services</h2>
+		<p>Welcome! Our service times are below. All are welcome.</p>
+		<p><span id="generalAnnouncement"></span></p>
+		<ul><strong>On Sunday</strong>
+			<li>10am (Morning Service &amp; Sunday School)</li>
+			<li>4pm (Afternoon Service)</li>
+			<li>6pm (Song Service)</li>
+		</ul>
+		<ul><strong>On Saturday</strong>
+			<li>7pm (Song Service)</li>
+		</ul>
+		
+	</div>
+	
+
+	<!-- Broadcast box-->
+	<div class="box">
+		<span id="status"><h2>Broadcast</h2></span>
+		<p>
+			<span id="broadcastAnnouncement"></span>
+		</p>
+		<p>
+			<strong>We broadcast on:</strong> Sunday at 10am, 4pm and 6pm.<br/>
+			<strong>Currently in Melbourne:</strong> <span id="MelbourneTime"></span>
+		</p>
+
+			 <p>
+				 <div class="radioplayer"
+				 data-src="https://streamer.radio.co/scebd56e71/listen"
+				 data-autoplay="false"
+				 data-playbutton="true"
+				 data-volumeslider="false"
+				 data-elapsedtime="true"
+				 data-nowplaying="true"
+				 data-showplayer="true"
+				 data-showartwork="false"
+				 data-image="/assets/images/church-blur.png"
+				 data-bg="/assets/images/church-blur.png"
+				 data-volume="100">
+				 </div><br/>
+			 It may take 15 seconds to start.<br/>
+			 </p>
+			 <p>
+			 	<a href="/service-recordings" alt="Prior service recordings">Click here to go to prior service recordings.</a>
+			 </p>
+	</div>
+
+
+	<div class="box">
+		<h2>Statement of Faith</h2>
+		<p>To read about our beliefs <a href="/statement-of-faith/">go here to view our Statement of Faith.</a></p>
+	</div>
+
+
+	<div class="box">
+		<h2>Our Address</h2>
+		<p>1431 Dohertys Road, Mt Cottrell<br/> Victoria, Australia 3024</p>
+		<a href="https://www.google.com.au/maps/place/1431+Dohertys+Rd,+Mount+Cottrell+VIC+3024/@-37.814544,144.6445463,17z/">View on Google Maps</a>
+	</div>
+
+
+	<div class="footer">
+		<a href="/"><img src="/assets/images/church.jpg" /></a>
+	</div>
+
+
+<!-- Show MEL time-->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.4.0/moment-timezone-with-data.min.js"></script>
+	
+    <script async>
+        function showTheTime(){
+            var time = moment.tz("Australia/Melbourne");
+            $('#MelbourneTime').html(time.format('dddd hh:mma') );
+        }
+		showTheTime();
+		setInterval(showTheTime, 60000); // update it periodically
+    </script>
+
+
+<!-- GA-->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106961573-1"></script>
+	<script>window.dataLayer = window.dataLayer || [];function gtag() {dataLayer.push(arguments)};gtag('js', new Date());gtag('config', 'UA-106961573-1');</script>
+
+
+	<!-- Broadcast script -->
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="/assets/js/jquery.radiocoplayer.min.js"></Script>
+	<script>$('.radioplayer').radiocoPlayer();</script>
+
+
+	<!-- Status script-->
+	<script async>
+		function getStatus() {
+			$.ajaxSetup({
+				timeout: 60000
+			});
+			$.getJSON('https://public.radio.co/stations/scebd56e71/status', function (data) {
+					//write broadcast status
+					if (data.source.type == "live") {
+						$('#status').html('<h2 class="statuslive">Broadcast - On Air</h2>');
+		
+					} else if (data.source.type == "automated") {
+						$('#status').html('<h2 class="statusoffline">Broadcast - Off Air</h2>');
+					} else  {
+						$('#status').append('');
+					}
+				},
+					
+			);
+		}
+		getStatus();
+		setInterval(getStatus, 30000);
+	</script>
+		
+		<!-- Announcement script-->
+		<script async>
+			function getAnnouncement() {
+  			  var ts = new Date().getTime();
+  			  var data1 = {_: ts};
+  			  var url = 'https://www.dl.dropboxusercontent.com/s/plxtcedx69v2w38/announcement.json?dl=0';
+
+				$.getJSON(url, data1, function (data) {
+						//broadcast announcement
+						if (data.notices[0].type == "broadcast" && data.notices[0].status == "on") {
+							$('#broadcastAnnouncement').html('<strong class="notice"> ' + data.notices[0].message + ' </strong> ');
+		
+						} else {
+							$('#broadcastAnnouncement').append('');
+						};
+						
+						//general announcement
+						if (data.notices[1].type == "general" && data.notices[1].status == "on") {
+							$('#generalAnnouncement').html('<strong class="notice"> ' + data.notices[1].message + ' </strong> ');
+		
+						} else {
+							$('#generalAnnouncement').append('');
+						}
+					},
+					
+				);
+			}
+			getAnnouncement();
+			setInterval(getAnnouncement, 600000);
+
+		</script>
+
+</body>
+</html>
