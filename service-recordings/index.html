@@ -45,11 +45,10 @@
 		
 		   <div class="box">
 			   <h2>Most recent</h2>
-			   
-			   	<div id="mostrecent">
-					... loading services
-				</div>	   
-	   
+			   <br/><strong> Services for: <span id="serviceDate"></span></strong>
+			   <div id="morningRecent"></div>
+			   <div id="afternoonRecent"></div>
+			   <div id="eveningRecent"></div>
 			</div>
 	   
 		   <div class="box">
@@ -79,23 +78,43 @@
 
                $.getJSON(url, data1, function(data) {
 				   
-				   //most recent
-                   $('#mostrecent').html(
-					   
-					   //morning service
-					   '<br/><strong> Services for: ' + data.services[0].serviceDate + '</strong>' +
-					   '<p> Morning reading: ' + data.services[0].morningReading + '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[0].morningRecording + '" type="audio/mp3"/>		</audio>				</div><br/></p>' +
-
-			   //afternoon service
-   			 '<p> Afternoon service: ' + data.services[0].afternoonReading + '<br/> <div class="responsive-wrapper responsive-audio">' + 
-					   '<audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[0].afternoonRecording + '" type="audio/mp3"/> </audio></div><br/></p>' +
-
-
-			   //evening service
-	 '<p>' + data.services[0].eveningTitle+ '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[0].eveningRecording + '" type="audio/mp3"/>		</audio>				</div>	 </p> <br/>'
-			   
-			   
-			   );
+				   //service date
+				   $('#serviceDate').html(data.services[0].serviceDate);
+				   
+				   
+				   //morningRecent
+				   if (data.services[0].morningRecording == "x") {
+				   	$('#morningRecent').html(
+				   	'<p> Morning: ' + data.services[0].morningReading
+				   	)
+				   } else {
+   				   	$('#morningRecent').html(
+						'<p> Morning: ' + data.services[0].morningReading + '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[0].morningRecording + '" type="audio/mp3"/></audio></div><br/></p>'
+					)}
+				   
+				   
+				   //afternoonRecent
+				   if (data.services[0].afternoonRecording == "x") {
+   				   	$('#afternoonRecent').html(
+   				   	'<p> Afternoon: ' + data.services[0].afternoonReading
+   				   	)
+				   } else
+				   {
+   				   	$('#afternoonRecent').html(
+					   '<p> Afternoon: ' + data.services[0].afternoonReading + '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[0].afternoonRecording + '" type="audio/mp3"/>		</audio>				</div><br/></p>'
+   				   	)}
+				   
+				   
+				   //eveningRecent
+				   if (data.services[0].eveningRecording == "x") {
+      				   $('#eveningRecent').html(
+						   '<p> Evening: ' + data.services[0].eveningTitle
+					   )
+				   } else
+				   {
+   				   	$('#eveningRecent').html(
+					   '<p> Evening reading: ' + data.services[0].eveningTitle + '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[0].eveningRecording + '" type="audio/mp3"/>		</audio>				</div><br/></p>'	
+   				   	)}
 			   
 				   
 				    //prior 4 services
