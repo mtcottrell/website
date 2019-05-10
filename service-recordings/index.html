@@ -74,7 +74,7 @@
 		  function getServices () {
 			  var ts = new Date().getTime();
 			  var data1 = {_: ts};
-			  var url = 'https://www.dl.dropboxusercontent.com/s/1ggcv9w74x2pxdw/services.json?dl=0';
+			  var url = 'https://www.dl.dropboxusercontent.com/s/6fx39oixavoqcgt/services.json?dl=0';
 			  
                $.getJSON(url, data1, function(data) {
 
@@ -150,6 +150,31 @@
 
       </script>
 
+
+
+		<!-- Announcement script-->
+		<script async>
+			function getAnnouncement() {
+  			  var ts = new Date().getTime();
+  			  var data1 = {_: ts};
+  			  var url = 'https://www.dl.dropboxusercontent.com/s/plxtcedx69v2w38/announcement.json?dl=0';
+
+				$.getJSON(url, data1, function (data) {
+						//broadcast announcement
+						if (data.notices[2].type == "recording" && data.notices[2].status == "on") {
+							$('#recordingAnnouncement').html('<strong class="notice"> ' + data.notices[2].message + ' </strong> ');
+		
+						} else {
+							$('#recordingAnnouncement').append('');
+						};
+						
+					},
+					
+				);
+			}
+			getAnnouncement();
+
+		</script>
 
 <!-- GA-->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106961573-1"></script>
