@@ -40,7 +40,6 @@
  			 <h2>Service Recordings</h2>
  			 <p>Below are recordings for prior week services. <br>
  				We endeavour to update this weekly.</p>
-				<span id="recordingAnnouncement"></span>
  	 	</div>
 		
 		   <div class="box">
@@ -51,6 +50,7 @@
 			   <div id="eveningRecent"></div>
 			</div>
 	   
+		   
 		   <div class="box">
 			   <h2>Prior recordings</h2>
       
@@ -74,10 +74,10 @@
 		  function getServices () {
 			  var ts = new Date().getTime();
 			  var data1 = {_: ts};
-			  var url = 'https://www.dl.dropboxusercontent.com/s/6fx39oixavoqcgt/services.json?dl=0';
-
+			  var url = 'https://www.dl.dropboxusercontent.com/s/1ggcv9w74x2pxdw/services.json?dl=0';
+			  
                $.getJSON(url, data1, function(data) {
-				   
+
 				   //service date
 				   $('#serviceDate').html(data.services[0].serviceDate);
 				   
@@ -85,23 +85,23 @@
 				   //morningRecent
 				   if (data.services[0].morningRecording == "x") {
 				   	$('#morningRecent').html(
-				   	'<p> Morning: ' + data.services[0].morningReading
+				   	'<p> Morning service: ' + data.services[0].morningReading
 				   	)
 				   } else {
    				   	$('#morningRecent').html(
-						'<p> Morning: ' + data.services[0].morningReading + '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[0].morningRecording + '" type="audio/mp3"/></audio></div><br/></p>'
+						'<p> Morning service: ' + data.services[0].morningReading + '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[0].morningRecording + '" type="audio/mp3"/></audio></div><br/></p>'
 					)}
 				   
 				   
 				   //afternoonRecent
 				   if (data.services[0].afternoonRecording == "x") {
    				   	$('#afternoonRecent').html(
-   				   	'<p> Afternoon: ' + data.services[0].afternoonReading
+   				   	'<p> Afternoon service: ' + data.services[0].afternoonReading
    				   	)
 				   } else
 				   {
    				   	$('#afternoonRecent').html(
-					   '<p> Afternoon: ' + data.services[0].afternoonReading + '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[0].afternoonRecording + '" type="audio/mp3"/>		</audio>				</div><br/></p>'
+					   '<p> Afternoon service: ' + data.services[0].afternoonReading + '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[0].afternoonRecording + '" type="audio/mp3"/>		</audio>				</div><br/></p>'
    				   	)}
 				   
 				   
@@ -113,8 +113,10 @@
 				   } else
 				   {
    				   	$('#eveningRecent').html(
-					   '<p> Evening reading: ' + data.services[0].eveningTitle + '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[0].eveningRecording + '" type="audio/mp3"/>		</audio>				</div><br/></p>'	
+					   '<p> Evening: ' + data.services[0].eveningTitle + '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[0].eveningRecording + '" type="audio/mp3"/>		</audio>				</div><br/></p>'	
    				   	)}
+				   
+
 			   
 				   
 				    //prior 4 services
@@ -122,7 +124,7 @@
                   $('#older').append(
 					   //morning service
 					   '<br/><strong> Services for: ' + data.services[i].serviceDate + '</strong>' +
-					   '<p> Morning reading: ' + data.services[i].morningReading + '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[i].morningRecording + '" type="audio/mp3"/>		</audio>				</div><br/></p>' +
+					   '<p> Morning service: ' + data.services[i].morningReading + '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[i].morningRecording + '" type="audio/mp3"/>		</audio>				</div><br/></p>' +
 			   //afternoon service
    			 '<p> Afternoon service: ' + data.services[i].afternoonReading + '<br/> <div class="responsive-wrapper responsive-audio">' + 
 					   '<audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[i].afternoonRecording + '" type="audio/mp3"/> </audio></div><br/></p>' +
@@ -148,30 +150,6 @@
 
       </script>
 
-
-		<!-- Announcement script-->
-		<script async>
-			function getAnnouncement() {
-  			  var ts = new Date().getTime();
-  			  var data1 = {_: ts};
-  			  var url = 'https://www.dl.dropboxusercontent.com/s/plxtcedx69v2w38/announcement.json?dl=0';
-
-				$.getJSON(url, data1, function (data) {
-						//broadcast announcement
-						if (data.notices[2].type == "recording" && data.notices[2].status == "on") {
-							$('#recordingAnnouncement').html('<strong class="notice"> ' + data.notices[2].message + ' </strong> ');
-		
-						} else {
-							$('#broadcastAnnouncement').append('');
-						};
-						
-					},
-					
-				);
-			}
-			getAnnouncement();
-
-		</script>
 
 <!-- GA-->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106961573-1"></script>
