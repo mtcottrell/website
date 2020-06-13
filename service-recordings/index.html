@@ -22,15 +22,11 @@
 	<link rel="stylesheet" href="/assets/css/skin-minimal-dark.css" /><!-- Dark Skin -->
 	<!-- end past player-->
 
-
 	<title>ACCN Melbourne | Service Recordings - Apostolic Christian Church Nazarene Melbourne Australia</title>
-	
-	
-</head>
+	</head>
+
 
 <body>
-
-
 	<div class="header">
 		<a href="/"><img src="/assets/images/ACCN-logo.png" width="261px" alt="Apostolic Christian Church Nazarene" class="logo"/></a>
 		<h3>Mount Cottrell <br/> Melbourne, Australia</h3>
@@ -55,13 +51,12 @@
 		   <div class="box">
 			   <h2>Prior recordings</h2>
       
-		  <div id="older">
+		 	  <div id="older">
 			  
-	      </div>
-		</div>
+	      	  </div>
+			</div>
 		 
 		
-
 	<div class="box">
 		<a href="/">Go back to homepage </a>
 	</div>
@@ -117,38 +112,39 @@
    				   	$('#eveningRecent').html(
 					   '<p> Evening: ' + data.services[0].eveningTitle + '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[0].eveningRecording + '" type="audio/mp3"/>		</audio>				</div><br/></p>'	
    				   	)}
-				   
 
-			   
-				   
-				    //prior 4 services
-				for (i = 1; i < 20; i++) {			
-                  $('#older').append(
-					   //morning service
-					   '<br/><strong> Services for: ' + data.services[i].serviceDate + '</strong>' +
-					   '<p> Morning service: ' + data.services[i].morningReading + '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[i].morningRecording + '" type="audio/mp3"/>		</audio>				</div><br/></p>' +
-			   //afternoon service
-   			 '<p> Afternoon service: ' + data.services[i].afternoonReading + '<br/> <div class="responsive-wrapper responsive-audio">' + 
-					   '<audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[i].afternoonRecording + '" type="audio/mp3"/> </audio></div><br/></p>' +
-			   //evening service
-	 '<p>' + data.services[i].eveningTitle+ '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[i].eveningRecording + '" type="audio/mp3"/>		</audio>				</div>	 </p> <br/>'		  
+
+
+
+				    //prior recordings
+				for (i = 1; i < 20; i++) {		
+					const serviceDate = '<br/><strong>' + data.services[i].serviceDate + '</strong>';
+					let morningService = '<p> Morning service: ' + data.services[i].morningReading + '<br/>'
+					if (data.services[i].morningRecording !== 'x') morningService += '<div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[i].morningRecording + '" type="audio/mp3"/>		</audio>				</div><br/></p>';
+					else morningService += '</p>'
+					let afternoonService = '<p> Afternoon service: ' + data.services[i].afternoonReading + '<br/> <div class="responsive-wrapper responsive-audio">';
+					if (data.services[i].afternoonRecording !== 'x') afternoonService += '<audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[i].afternoonRecording + '" type="audio/mp3"/> </audio></div><br/></p>';
+					else afternoonService += '</p>'
+					let eveningService = '<p> Evening: ' + data.services[i].eveningTitle+ '<br/>';
+					if (data.services[i].eveningRecording !== 'x') eveningService += '<div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[i].eveningRecording + '" type="audio/mp3"/>		</audio>				</div>	 </p> <br/>';
+					else eveningService += '<br/><br/></p>'
+				  $('#older').append(
+						serviceDate + morningService + afternoonService + eveningService
 				  );
 	          }
-			  
+
 		 $('.progression-single').mediaelementplayer({
 		  	audioWidth: 400, // width of audio player
 			audioHeight:40, // height of audio player
 			startVolume: 1, // initial volume when the player starts
 			features: ['playpause','current','progress','duration']
 		});	
-				  
+
              });
-			   
+
 		   }
 
-			
 			getServices();
-			
 
       </script>
 
