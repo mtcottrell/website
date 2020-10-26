@@ -34,7 +34,7 @@
  	 	
 		<div class="box">	
  			 <h2>Service Recordings</h2>
- 			 <p>Below are recordings for prior week services. <br>
+ 			 <p>Below are recordings of prior services. <br>
  				We endeavour to update this weekly.</p>
 				<span id="recordingAnnouncement"></span>
  	 	</div>
@@ -117,7 +117,7 @@
 
 
 				    //prior recordings
-				for (i = 1; i < 20; i++) {		
+				for (i = 1; i < 25; i++) {		
 					const serviceDate = '<br/><strong>' + data.services[i].serviceDate + '</strong>';
 					let morningService = '<p> Morning service: ' + data.services[i].morningReading + '<br/>'
 					if (data.services[i].morningRecording !== 'x') morningService += '<div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[i].morningRecording + '" type="audio/mp3"/>		</audio>				</div><br/></p>';
@@ -155,7 +155,7 @@
 			function getAnnouncement() {
   			  var ts = new Date().getTime();
   			  var data1 = {_: ts};
-  			  var url = 'https://www.dl.dropboxusercontent.com/s/plxtcedx69v2w38/announcement.json?dl=0';
+  			  var url = 'https://www.dl.dropboxusercontent.com/s/hinm9p7ld765p0o/announcement.json?dl=0';
 
 				$.getJSON(url, data1, function (data) {
 						//broadcast announcement
