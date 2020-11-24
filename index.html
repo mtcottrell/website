@@ -32,12 +32,12 @@
 		<p><span id="generalAnnouncement"></span></p>
 <!--  		<p>Normally our service times are:</p>-->
 		<ul><strong>Saturday</strong>
-			<li>7pm (Recording of a previous song service)</li>
+			<li>7pm (Broadcast of a recorded song service)</li>
 		</ul>
  		<ul><strong>Sunday</strong>
-			<li>10am (Live service)</li>
-			<li>4pm (Live service)</li>
-			<li>6pm (Recording of a previous song service)</li>
+			<li>10am (Sunday School and Service - In Person & Live Broadcast)</li>
+			<li>4pm (Service - In Person & Live Broadcast)</li>
+			<li>6pm (Broadcast of a recorded song service)</li>
 		</ul>
 
 		
@@ -153,7 +153,7 @@
 			function getAnnouncement() {
   			  var ts = new Date().getTime();
   			  var data1 = {_: ts};
-  			  var url = 'https://www.dl.dropboxusercontent.com/s/hinm9p7ld765p0o/announcement.json?dl=0';
+  			  var url = 'https://www.dl.dropboxusercontent.com/s/zjzdtqi955x2yfp/announcement_test.json?dl=0';
 
 				$.getJSON(url, data1, function (data) {
 						//broadcast announcement
