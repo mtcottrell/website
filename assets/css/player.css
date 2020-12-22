@@ -6,46 +6,18 @@
 
 .radioco-playButton-playing:before{
 	font-family: 'FontAwesome', sans-serif;
-  	content: "\f04b";
-    font-size:50px;
-    color: #fff;
-	background: #000;
-	display: flex;
-	flex-direction: column;
-}
-
-.radioco-playButton-playing:after{
-	font-family: sans-serif;
-  	content: "Play";
-
-    color: #fff;
-	background: #000;
-	display: flex;
-	flex-direction: column;
+  content: "\f04b";
 }
 
 .radioco-playButton-paused:before{
 	font-family: 'FontAwesome', sans-serif;
-  	content:"\f04d";
-    font-size:50px;
-    color: #fff;
-	display: flex;
-	flex-direction: column;
-}
-
-.radioco-playButton-paused:after{
-	font-family: sans-serif;
-  	content:"Stop";
-
-    color: #fff;
-	display: flex;
-	flex-direction: column;
+  content:"\f04d";
 }
 
 .radioplayer{
   background: #000;
   padding: 20px;
-  width: 350px;
+  width: 390px;
   height: 85px;
   box-shadow: #ccc 0px 1px 50px;
   border-radius:4px;
@@ -66,7 +38,7 @@
   box-shadow: #111 1px 1px 10px;
   color: #fff;
   position: relative;
-  top: 5px;
+  top: 15px;
   text-align: left;
   margin-left: 6.5%;
   position: relative;
@@ -81,7 +53,6 @@
 .radioco-playButton-playing{
   font-family: "controls";
   position: absolute;
-  background: #000;
   text-size:150%;
   text-shadow:#333 0px 0px 15px;
 }
@@ -90,7 +61,6 @@
 .radioco-playButton-paused{
   font-family: "controls";
   position: absolute;
-  background: #000;
   text-size:150%;
   text-shadow:#333 0px 0px 15px;
 }

@@ -28,10 +28,9 @@
 
 
 	<div class="box">
-		<h2>Our Services</h2>
-		<p>Welcome! Our service times are below.</p>
 		<p><span id="generalAnnouncement"></span></p>
-<!--  		<p>Normally our service times are:</p>-->
+		<h1>Services Times</h1>
+		<p>Our service times are below, all are welcome.</p>
 
 		<ul><strong>Sunday</strong>
 			<li>10am (Morning Service &amp; Sunday School)</li>
@@ -41,54 +40,56 @@
 		<ul>
 			<strong>Saturday</strong>
 			<li>7pm (Song Service)</li>
-		</ul>
-
-		
+		</ul>		
 	</div>
-	
+
 
 	<!-- Broadcast box-->
 	<div class="box">
-		<span id="status"><h2>Broadcast</h2></span>
-		<p>
-			<span id="broadcastAnnouncement"></span>
-		</p>
-		<p>
-<!-- 			<strong>We broadcast on:</strong> Sunday at 10am, 4pm and 6pm.<br/>-->
+		<span id="status"><h1>Broadcast</h1></span>
+		<span id="broadcastAnnouncement"></span>
 
-			<strong>Currently in Melbourne:</strong> <span id="MelbourneTime"></span>
+		<p>
+			<strong>We broadcast on:</strong> Sunday at 10am, 4pm and 6pm.<br/>
+			<strong>Currently in Melbourne:</strong> <span id="MelbourneTime"></span>.
 		</p>
 
-			 <p>
-				 <div class="radioplayer"
-				 data-src="https://streamer.radio.co/scebd56e71/listen"
-				 data-autoplay="false"
-				 data-playbutton="true"
-				 data-volumeslider="false"
-				 data-elapsedtime="true"
-				 data-nowplaying="true"
-				 data-showplayer="true"
-				 data-showartwork="false"
-				 data-image="/assets/images/church-blur.png"
-				 data-bg="/assets/images/church-blur.png"
-				 data-volume="100">
-				 </div><br/>
-			 It may take 15 seconds to start.<br/>
-			 </p>
-			 <p>
-			 	<a href="/service-recordings" alt="Prior service recordings">Click here to listen to past recordings.</a>
-			 </p>
+		 <p>
+			 <div class="radioplayer"
+			 data-src="https://streamer.radio.co/scebd56e71/listen"
+			 data-autoplay="false"
+			 data-playbutton="true"
+			 data-volumeslider="false"
+			 data-elapsedtime="true"
+			 data-nowplaying="true"
+			 data-showplayer="true"
+			 data-showartwork="false"
+			 data-image="/assets/images/church-blur.png"
+			 data-bg="/assets/images/church-blur.png"
+			 data-volume="100">
+			 </div><br/>
+
+		 It may take 15 seconds to start.
+		 </p>
+
+	</div>
+
+
+	<div class="box">	
+		 <h1>Recordings</h1>
+		 <p><a href="/service-recordings" alt="Prior service recordings">Click here to view and listen to past service recordings.</a>
+		 </p>
+ 	</div>
+
+
+	<div class="box">
+		<h1>Statement of Faith</h1>
+		<p>To read about our beliefs <a href="/statement-of-faith/">click here to view our Statement of Faith.</a></p>
 	</div>
 
 
 	<div class="box">
-		<h2>Statement of Faith</h2>
-		<p>To read about our beliefs <a href="/statement-of-faith/">go here to view our Statement of Faith.</a></p>
-	</div>
-
-
-	<div class="box">
-		<h2>Our Address</h2>
+		<h1>Our Address</h1>
 		<p>1431 Dohertys Road, Mt Cottrell<br/> Victoria, Australia 3024</p>
 		<a href="https://www.google.com.au/maps/place/1431+Dohertys+Rd,+Mount+Cottrell+VIC+3024/@-37.814544,144.6445463,17z/">View on Google Maps</a>
 	</div>
@@ -107,7 +108,7 @@
     <script async>
         function showTheTime(){
             var time = moment.tz("Australia/Melbourne");
-            $('#MelbourneTime').html(time.format('dddd hh:mma') );
+            $('#MelbourneTime').html(time.format('dddd h:mma') );
         }
 		showTheTime();
 		setInterval(showTheTime, 60000); // update it periodically
@@ -125,7 +126,7 @@
 	<script>$('.radioplayer').radiocoPlayer();</script>
 
 
-	<!-- Status script-->
+	<!-- Broadcast status script-->
 	<script async>
 		function getStatus() {
 			$.ajaxSetup({
@@ -134,12 +135,12 @@
 			$.getJSON('https://public.radio.co/stations/scebd56e71/status', function (data) {
 					//write broadcast status
 					if (data.source.type == "live") {
-						$('#status').html('<h2 class="statuslive">Broadcast - On Air</h2>');
+						$('#status').html('<h1>Broadcast <span class="statuslive">On Air</span></h1>');
 		
 					} else if (data.source.type == "automated" && data.current_track.title == "ACCN Melbourne - Offline") {
-						$('#status').html('<h2 class="statusoffline">Broadcast - Off Air</h2>');
+						$('#status').html('<h1>Broadcast <span class="statusoffline">Off Air</span></h1>');
 					} else if (data.source.type == "automated" && data.current_track.title != "ACCN Melbourne - Offline") {
-						$('#status').html('<h2 class="statuslive">Broadcast - On Air</h2>');
+						$('#status').html('<h1>Broadcast <span class="statuslive">On Air</span></h1>');
 					} else  {
 						$('#status').append('');
 					}

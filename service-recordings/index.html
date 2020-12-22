@@ -33,27 +33,13 @@
 	</div>
  	 	
 		<div class="box">	
- 			 <h2>Service Recordings</h2>
- 			 <p>Below are recordings of prior services. <br>
- 				We endeavour to update this weekly.</p>
+ 			 <h1>Recordings</h1>
+ 			 <p>Below are recordings of prior services, we aim to update this weekly.</p>
 				<span id="recordingAnnouncement"></span>
  	 	</div>
 		
-		   <div class="box">
-			   <h2>Most recent</h2>
-			   <br/><strong> Services for: <span id="serviceDate"></span></strong>
-			   <div id="morningRecent"></div>
-			   <div id="afternoonRecent"></div>
-			   <div id="eveningRecent"></div>
-			</div>
 	   
-		   
-		   <div class="box">
-			   <h2>Prior recordings</h2>
-      
-		 	  <div id="older">
-			  
-	      	  </div>
+		 	<div id="services">		   
 			</div>
 		 
 		
@@ -65,6 +51,8 @@
 	<div class="footer">
 		<a href="/"><img src="/assets/images/church.jpg" /></a>
 	</div>
+	
+	<!-- Recordings script-->
       <script>
 
 		  function getServices () {
@@ -75,60 +63,19 @@
 			  
                $.getJSON(url, data1, function(data) {
 
-				   //service date
-				   $('#serviceDate').html(data.services[0].serviceDate);
-				   
-				   
-				   //morningRecent
-				   if (data.services[0].morningRecording == "x") {
-				   	$('#morningRecent').html(
-				   	'<p> Morning service: ' + data.services[0].morningReading
-				   	)
-				   } else {
-   				   	$('#morningRecent').html(
-						'<p> Morning service: ' + data.services[0].morningReading + '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[0].morningRecording + '" type="audio/mp3"/></audio></div><br/></p>'
-					)}
-				   
-				   
-				   //afternoonRecent
-				   if (data.services[0].afternoonRecording == "x") {
-   				   	$('#afternoonRecent').html(
-   				   	'<p> Afternoon service: ' + data.services[0].afternoonReading
-   				   	)
-				   } else
-				   {
-   				   	$('#afternoonRecent').html(
-					   '<p> Afternoon service: ' + data.services[0].afternoonReading + '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[0].afternoonRecording + '" type="audio/mp3"/>		</audio>				</div><br/></p>'
-   				   	)}
-				   
-				   
-				   //eveningRecent
-				   if (data.services[0].eveningRecording == "x") {
-      				   $('#eveningRecent').html(
-						   '<p> Evening: ' + data.services[0].eveningTitle
-					   )
-				   } else
-				   {
-   				   	$('#eveningRecent').html(
-					   '<p> Evening: ' + data.services[0].eveningTitle + '<br/> <div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[0].eveningRecording + '" type="audio/mp3"/>		</audio>				</div><br/></p>'	
-   				   	)}
-
-
-
-
-				    //prior recordings
-				for (i = 1; i < 25; i++) {		
-					const serviceDate = '<br/><strong>' + data.services[i].serviceDate + '</strong>';
-					let morningService = '<p> Morning service: ' + data.services[i].morningReading + '<br/>'
+				    //recordings
+				for (i = 0; i < 20; i++) {		
+					const serviceDate = '<div class="box"> <h2>' + data.services[i].serviceDate + '</h2>';
+					let morningService = '<p> <strong>Morning service:</strong> ' + data.services[i].morningReading + '<br/>'
 					if (data.services[i].morningRecording !== 'x') morningService += '<div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[i].morningRecording + '" type="audio/mp3"/>		</audio>				</div><br/></p>';
 					else morningService += '</p>'
-					let afternoonService = '<p> Afternoon service: ' + data.services[i].afternoonReading + '<br/> <div class="responsive-wrapper responsive-audio">';
+					let afternoonService = '<p> <strong>Afternoon service:</strong> ' + data.services[i].afternoonReading + '<br/> <div class="responsive-wrapper responsive-audio">';
 					if (data.services[i].afternoonRecording !== 'x') afternoonService += '<audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[i].afternoonRecording + '" type="audio/mp3"/> </audio></div><br/></p>';
 					else afternoonService += '</p>'
-					let eveningService = '<p> Evening: ' + data.services[i].eveningTitle+ '<br/>';
+					let eveningService = '<p> <strong>Evening:</strong> ' + data.services[i].eveningTitle+ '<br/>';
 					if (data.services[i].eveningRecording !== 'x') eveningService += '<div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[i].eveningRecording + '" type="audio/mp3"/>		</audio>				</div>	 </p> <br/>';
-					else eveningService += '<br/><br/></p>'
-				  $('#older').append(
+					else eveningService += '</p></div>'
+				  $('#services').append(
 						serviceDate + morningService + afternoonService + eveningService
 				  );
 	          }
