@@ -71,11 +71,26 @@
 				    //recordings
 				for (i = 0; i < 20; i++) {		
 					const serviceDate = '<div class="box"> <h2>' + data.services[i].serviceDate + '</h2>';
-					let morningService = '<p> <strong>Morning reading:</strong> ' + data.services[i].morningReading + '<br/> '
-					if (data.services[i].morningRecording !== 'x') morningService += '<div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[i].morningRecording + '" type="audio/mp3"/>		</audio>				</div><br/></p>';
+					let morningService = '<p> <strong>Morning reading:</strong> ' + data.services[i].morningReading + '<br/>' 
+					
+					// check for record of morning minister
+					let morningMinisters = ''
+					if (data.services[i].morningMinisters) morningMinisters += '<strong>Ministers:</strong> ' + data.services[i].morningMinisters + '<br/>'
+						else morningMinisters += ''
+					
+					
+					if (data.services[i].morningRecording) morningService += morningMinisters += '<div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[i].morningRecording + '" type="audio/mp3"/>		</audio>				</div><br/></p>';
 					else morningService += '</p>'
-					let afternoonService = '<p> <strong>Afternoon reading:</strong> ' + data.services[i].afternoonReading + '<br/> '
-					if (data.services[i].afternoonRecording !== 'x') afternoonService += '<div class="responsive-wrapper responsive-audio"><audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[i].afternoonRecording + '" type="audio/mp3"/> </audio></div><br/></p>';
+						
+
+					let afternoonService = '<p> <strong>Afternoon reading:</strong> ' + data.services[i].afternoonReading + '<br/>' 
+
+						//	check for record of afternoon minister						
+						let afternoonMinisters = ''
+						if (data.services[i].afternoonMinisters) afternoonMinisters += '<strong>Ministers:</strong> ' + data.services[i].afternoonMinisters + '<br/>'
+							else afternoonMinisters += ''
+						
+					if (data.services[i].afternoonRecording) afternoonService += afternoonMinisters += '<div class="responsive-wrapper responsive-audio"><audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[i].afternoonRecording + '" type="audio/mp3"/> </audio></div><br/></p>';
 					else afternoonService += '</p>'
 					let eveningService = '<p> <strong>Evening:</strong> ' + data.services[i].eveningTitle+ '<br/>';
 					if (data.services[i].eveningRecording !== 'x') eveningService += '<div class="responsive-wrapper responsive-audio"> <audio class="progression-single progression-skin progression-minimal-dark progression-audio-player" controls="controls" preload="none"> <source src="'+ data.services[i].eveningRecording + '" type="audio/mp3"/>		</audio>				</div>	 </p> <br/>';
