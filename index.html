@@ -48,7 +48,7 @@
 	<div class="box">
 		<span id="status"><h1>Broadcast</h1></span>
 		<span id="broadcastAnnouncement"></span>
-
+		
 		<p>
 			<strong>We broadcast on:</strong> Sunday at 10am, 4pm and 6pm.<br/>
 			<strong>Currently in Melbourne:</strong> <span id="MelbourneTime"></span>.
@@ -111,7 +111,7 @@
             $('#MelbourneTime').html(time.format('dddd h:mma') );
         }
 		showTheTime();
-		setInterval(showTheTime, 60000); // update it periodically
+		setInterval(showTheTime, 60000); // update every minute (60000)
     </script>
 
 
@@ -133,15 +133,33 @@
 				timeout: 60000
 			});
 			$.getJSON('https://public.radio.co/stations/scebd56e71/status', function (data) {
-					//write broadcast status
-					if (data.source.type == "live") {
-						$('#status').html('<h1>Broadcast <span class="statuslive">On Air</span></h1>');
-		
-					} else if (data.source.type == "automated" && data.current_track.title == "ACCN Melbourne - Offline") {
-						$('#status').html('<h1>Broadcast <span class="statusoffline">Off Air</span></h1>');
-					} else if (data.source.type == "automated" && data.current_track.title != "ACCN Melbourne - Offline") {
-						$('#status').html('<h1>Broadcast <span class="statuslive">On Air</span></h1>');
-					} else  {
+					
+				var title = data.current_track.title;
+				var type = data.source.type;
+
+					// Live broadcast
+					if (
+						type == "live") {
+							$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="green-box">Live</span></h1>');
+						}  
+
+					// Offline
+					else if (
+						type == "automated" && title == "ACCN Melbourne - Offline") {
+							$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="red-box">Offline</span></h1>');//statusoffline
+						} 
+
+					// Playing prior recordings
+					else if (
+						type == "automated" &&
+						title.toLowerCase().includes("singing".toLowerCase()) &&
+						(title.includes("2021") || title.includes("2020") || title.includes("2019")))
+						{
+							$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="green-box">Live: Previous service</span></h1>');
+						}
+
+					// fallback to nothing
+					else  {
 						$('#status').append('');
 					}
 				},
@@ -149,9 +167,9 @@
 			);
 		}
 		getStatus();
-		setInterval(getStatus, 30000);
+		setInterval(getStatus, 30000); // update every half minute (30000)
 	</script>
-		
+
 		<!-- Announcement script-->
 		<script async>
 			function getAnnouncement() {
@@ -180,7 +198,7 @@
 				);
 			}
 			getAnnouncement();
-			setInterval(getAnnouncement, 600000);
+			setInterval(getAnnouncement, 300000); // update every 5 minutes (300000)
 
 		</script>
 
