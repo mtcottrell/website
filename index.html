@@ -171,36 +171,54 @@
 	</script>
 
 		<!-- Announcement script-->
-		<script async>
-			function getAnnouncement() {
-  			  var ts = new Date().getTime();
-  			  var data1 = {_: ts};
-  			  var url = 'https://www.dl.dropboxusercontent.com/s/hinm9p7ld765p0o/announcement.json?dl=0';
-
-				$.getJSON(url, data1, function (data) {
-						//broadcast announcement
-						if (data.notices[0].type == "broadcast" && data.notices[0].status == "on") {
-							$('#broadcastAnnouncement').html('<strong class="notice"> ' + data.notices[0].message + ' </strong> ');
-		
-						} else {
-							$('#broadcastAnnouncement').append('');
-						};
-						
-						//general announcement
-						if (data.notices[1].type == "general" && data.notices[1].status == "on") {
-							$('#generalAnnouncement').html('<strong class="generalAnnouncement"> ' + data.notices[1].message + ' </strong> ');
-		
-						} else {
-							$('#generalAnnouncement').append('');
-						}
-					},
+<script async="">
+		function getStatus() {
+			$.ajaxSetup({
+				timeout: 60000
+			});
+			$.getJSON('https://public.radio.co/stations/scebd56e71/status', function (data) {
 					
-				);
-			}
-			getAnnouncement();
-			setInterval(getAnnouncement, 300000); // update every 5 minutes (300000)
+				var title = data.current_track.title;
+				var type = data.source.type;
 
-		</script>
+					// Live broadcast
+					if (
+						type == "live") {
+							$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="green-box">Live</span></h1>');
+						}  
+
+					// Automatic music prior live cut-over
+					else if (
+						type == "automated" && title == "Live - before service") {
+							$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="green-box">Live</span></h1>');
+						} 
+
+					// Offline
+					else if (
+						type == "automated" && title == "ACCN Melbourne - Offline") {
+							$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="red-box">Offline</span></h1>');//statusoffline
+						}
+
+					// Playing prior recordings
+					else if (
+						type == "automated" &&
+						title.toLowerCase().includes("singing".toLowerCase()) &&
+						(title.includes("2021") || title.includes("2020") || title.includes("2019")))
+						{
+							$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="green-box">Live: Previous service</span></h1>');
+						}
+
+					// fallback to no status displayed
+					else  {
+						$('#status').append('');
+					}
+				},
+					
+			);
+		}
+		getStatus();
+		setInterval(getStatus, 30000); // update every half minute (30000)
+	</script>
 
 </body>
 </html>
