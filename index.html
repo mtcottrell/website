@@ -130,7 +130,7 @@
 	<script async>
 		function getStatus() {
 			$.ajaxSetup({
-				timeout: 60000
+				timeout: 30000
 			});
 			$.getJSON('https://public.radio.co/stations/scebd56e71/status', function (data) {
 					
@@ -140,23 +140,29 @@
 					// Live broadcast
 					if (
 						type == "live") {
-							$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="green-box">Live</span></h1>');
+							$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="green-box">Online</span></h1>');
 						}  
 
+					// Other broadcast
+					else if (
+						type == "automated" && title != "ACCN Melbourne - Offline") {
+							$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="green-box">Online</span></h1>');
+						} 	
+					
 					// Offline
 					else if (
 						type == "automated" && title == "ACCN Melbourne - Offline") {
-							$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="red-box">Offline</span></h1>');//statusoffline
+							$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="red-box">Offline</span></h1>');
 						} 
 
 					// Playing prior recordings
-					else if (
-						type == "automated" &&
-						title.toLowerCase().includes("singing".toLowerCase()) &&
-						(title.includes("2021") || title.includes("2020") || title.includes("2019")))
-						{
-							$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="green-box">Live: Previous service</span></h1>');
-						}
+					// else if (
+					// 	type == "automated" &&
+					// 	title.toLowerCase().includes("singing".toLowerCase()) &&
+					// 	(title.includes("2021") || title.includes("2020") || title.includes("2019")))
+					// 	{
+					// 		$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="green-box">Live: Previous service</span></h1>');
+					// 	}
 
 					// fallback to nothing
 					else  {
