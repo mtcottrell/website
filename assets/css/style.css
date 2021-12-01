@@ -79,7 +79,15 @@
 	 }
      audio {
        border: 1px solid #777777;
+	   max-width: 100%;
+	   min-width: 100%;
      }
+	 video {
+	     border-radius: .25rem;
+		 max-width: 100%;
+		 min-width: 100%;
+		 background: #000;
+	 }
 	 ul {
 		 margin-bottom: 20px;
 		 padding: 0 0 0 1rem;
