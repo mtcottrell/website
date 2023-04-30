@@ -1,232 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Home page of ACCN Melbourne Australia. Service times, live broadcast, Statement of Faith and service recordings."/>
-	<meta name="format-detection" content="telephone=no">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Home page of ACCN Melbourne Australia. Service times, live broadcast, Statement of Faith and service recordings.">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-title" content="ACCN Melbourne">
+		<meta name="application-name" content="ACCN Melbourne">
+		<link rel="apple-touch-icon" href="/assets/images/church.jpg">
+		<link rel="shortcut icon" href="/assets/images/church.jpg">
 
-	<meta name="apple-mobile-web-app-title" content="ACCN Melbourne">
-	<meta name="application-name" content="ACCN Melbourne">
-	<link rel="apple-touch-icon" href="/assets/images/church.jpg">
-	<link rel="shortcut icon" href="/assets/images/church.jpg">
-	<link rel="stylesheet" href="/assets/css/style.css">
-
-	<!-- broadcast player-->
-	<link rel="stylesheet" href="/assets/css/player.css">
-
-	<title>ACCN Melbourne | Live Broadcast Home - Apostolic Christian Church Nazarene Melbourne Australia</title>
-</head>
-
-<body>
-
-
-	<div class="header">
-		<a href="/"><img src="/assets/images/ACCN-logo.png" width="261px" alt="Apostolic Christian Church Nazarene logo" class="logo"/></a>
-		<h3>Mount Cottrell <br/> Melbourne, Australia</h3>
-	</div>
-
-
-	<div class="box">
-		<p><span id="generalAnnouncement"></span></p>
-		<h1>Services</h1>
-		<p>Our service times are below, all are welcome.</p>
-
-		<ul><strong>Sunday</strong>
-			<li>10am (Morning Service &amp; Sunday School)</li>
-			<li>4pm (Afternoon Service)</li>
-			<li>6pm (Song Service)</li>
-		</ul>
-		<ul>
-			<strong>Saturday</strong>
-			<li>7pm (Song Service)</li>
-		</ul>		
-	</div>
-
-
-	<!-- Broadcast box-->
-	<div class="box">
-		<span id="status"><h1>Broadcast</h1></span>
-		<span id="broadcastAnnouncement"></span>
+		<link rel="stylesheet" href="/assets/css/player.css">
 		
-		<p>
-			<strong>We broadcast on:</strong> Sunday at 10am, 4pm and 6pm.<br/>
-			<strong>Currently in Melbourne:</strong> <span id="MelbourneTime"></span>.
-		</p>
-
-		 <p>
-			 <div class="radioplayer"
-			 data-src="https://streamer.radio.co/scebd56e71/listen"
-			 data-autoplay="false"
-			 data-playbutton="true"
-			 data-volumeslider="false"
-			 data-elapsedtime="true"
-			 data-nowplaying="true"
-			 data-showplayer="true"
-			 data-showartwork="false"
-			 data-image="/assets/images/church-blur.png"
-			 data-bg="/assets/images/church-blur.png"
-			 data-volume="100">
-			 </div><br/>
-
-		 It may take 15 seconds to start.
-		 </p>
-
-	</div>
+		<!-- past player-->
+		<script src="/assets/js/jquery-1.11.1.min.js"></script><!-- jQuery Latest Local -->
+		<script src="/assets/build/mediaelement-and-player.min.js"></script><!-- Audio/Video Player jQuery -->
+		<script src="/assets/build/mep-feature-playlist.js"></script><!-- Playlist JavaSCript -->
 	
-	<!-- <div class="box">
-		<h1>Funeral service broadcast</h1>
-		 <p>
-			 Sister Verona Kapitans' funeral will be on Tuesday 16th November. Below are the details to view the funeral service online.<br/><br/>
+		<link rel="stylesheet" href="/assets/css/progression-player.css" /><!-- Default Player Styles -->
+		<link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css" /><!-- Player Icons -->
+		<link rel="stylesheet" href="/assets/css/skin-minimal-dark.css" /><!-- Dark Skin -->
+		<!-- end past player-->
+				<link rel="stylesheet" href="/assets/css/style.css"><!-- broadcast player-->
+		<title>
+			ACCN Melbourne | Live Broadcast Home - Apostolic Christian Church Nazarene Melbourne Australia
+		</title>
+	</head>
+	<body>
+		<div class="header">
+			<a href="/"><img src="/assets/images/ACCN-logo.png" width="261px" alt="Apostolic Christian Church Nazarene logo" class="logo"></a>
+			<h3>
+				Mount Cottrell<br>
+				Melbourne, Australia
+			</h3>
+		</div>
+		<div class="box">
+			<p>
+				<span id="generalAnnouncement"></span>
+			</p>
+			<h1>
+				Services
+			</h1>
+			<p>
+				Our service times are below, all are welcome.
+			</p>
+			<ul>
+				<strong>Sunday</strong>
+				<li>10am (Morning Service & Sunday School)
+				</li>
+				<li>4pm (Afternoon Service)
+				</li>
+				<li>6pm (Song Service)
+				</li>
+			</ul>
+			<ul>
+				<strong>Saturday</strong>
+				<li>7pm (Song Service)
+				</li>
+			</ul>
+		</div><!-- Broadcast box-->
+		<div class="box">
+			<span id="status"></span>
+			<h1>
+			</h1><span id="broadcastAnnouncement"></span>
+			<p>
+				<strong>We broadcast on:</strong> Sunday at 10am, 4pm and 6pm.<br>
+				<strong>Currently in Melbourne:</strong> <span id="MelbourneTime"></span>.
+			</p>
+			<div class="radioplayer" data-src="https://streamer.radio.co/scebd56e71/listen" data-autoplay="false" data-playbutton="true" data-volumeslider="false" data-elapsedtime="true" data-nowplaying="true" data-showplayer="true" data-showartwork="false" data-image="/assets/images/church-blur.png" data-bg="/assets/images/church-blur.png" data-volume="100"></div><br>
+			It may take 15 seconds to start.
+		</div>
+		
+		<!-- <div class="box">
+	     <h1>Funeral service broadcast</h1>
+	     <p>
+	     Sister Verona Kapitans' funeral will be on Tuesday 16th November. Below are the details to view the funeral service online.<br/><br/>
 
-			 <b>2:00pm chapel sevice</b><br/> <a href="https://view.oneroomstreaming.com/authorise.php?k=1636382765759487">This link will take you to view the chapel service.</a>
-			 <br/><br/>
-			 <b>3:15pm burial</b><br/>Broadcast via Zoom. <a href="https://us06web.zoom.us/j/89018206968?pwd=UERSOExqQWM3MzNTZ1hEZ3NMNExPQT09">This link will take you into Zoom for the burial.</a><br/><br/>If needed, the manual Zoom details are<br/>
-			 Meeting ID: 890 1820 6968<br/>
-			 Passcode: 1234
-		 </p>
-	</div> -->
+	     <b>2:00pm chapel sevice</b><br/> <a href="https://view.oneroomstreaming.com/authorise.php?k=1636382765759487">This link will take you to view the chapel service.</a>
+	     <br/><br/>
+	     <b>3:15pm burial</b><br/>Broadcast via Zoom. <a href="https://us06web.zoom.us/j/89018206968?pwd=UERSOExqQWM3MzNTZ1hEZ3NMNExPQT09">This link will take you into Zoom for the burial.</a><br/><br/>If needed, the manual Zoom details are<br/>
+	     Meeting ID: 890 1820 6968<br/>
+	     Passcode: 1234
+	     </p>
+	     </div> -->
+		<div class="box">
+			<h1>
+				Service Recordings
+			</h1>
+			<p>
+				<a href="../service-recordings" alt="Prior service recordings">Click here to listen to past service recordings.</a>
+			</p>
+		</div>
+		
+		<div class="aas-box">
+			<div class="aas-heading">
+				<div>
+					<h1>
+						All Australia Sing 2023
+					</h1>
+					<p style="margin-right: .5rem;">
+						<a href="/all-australia-sing-2023/">Click here to listen to the All Australia Sing 2023.</a>
+					</p><br>
+					<p>
+						<i><small>O come, let us sing unto the Lord: let us make a joyful noise to the rock of our salvation.</small></i><br>
+						<small>Psalm 95:1</small>
+					</p>
+				</div>
+			</div><img src="/assets/images/all-australia-sing-image.png">
+		</div>
+		
+		<!-- 
+	     <div class="box">	
+	     <h1>Funeral Recordings</h1>
+	     <p><a href="../funeral-recordings" alt="Prior service recordings">Click here for past funeral recordings.</a>
+	     </p>
+ 	     </div>
+	-->
+		<div class="box">
+			<h1>
+				Statement of Faith
+			</h1>
+			<p>
+				To read about our beliefs <a href="/statement-of-faith/">click here to view our Statement of Faith.</a>
+			</p>
+		</div>
+		<div class="box">
+			<h1>
+				Our Address
+			</h1>
+			<p>
+				1431 Dohertys Road, Mt Cottrell<br>
+				Victoria, Australia 3024
+			</p><a href="https://www.google.com.au/maps/place/1431+Dohertys+Rd,+Mount+Cottrell+VIC+3024/@-37.814544,144.6445463,17z/">View on Google Maps</a><br>
+			<br>
+		</div>
+		<div class="footer">
+			<a href="/"><img src="/assets/images/church.jpg"></a>
+		</div>
+		
+		<!-- PLAYLIST PLAYER -->
+		<script>
+		$('.progression-playlist').mediaelementplayer({
+			audioWidth: 400, // width of audio player
+			audioHeight: 40, // height of audio player
+			startVolume: 1, // initial volume when the player starts
+			loop: true, // useful for <audio> player loops
+			features: ['playlistfeature', 'prevtrack', 'playpause', 'nexttrack','current', 'progress', 'duration'],
+			playlist: true, //Playlist Show
+			playlistposition: 'bottom' //Playlist Location
+			});
+		</script>
+			
+			<script>
+			$('.progression-playlist1').mediaelementplayer({
+				audioWidth: 400, // width of audio player
+				audioHeight:40, // height of audio player
+				startVolume: 1, // initial volume when the player starts
+				loop: true, // useful for <audio> player loops
+				features: ['playlistfeature', 'prevtrack', 'playpause', 'nexttrack','current', 'progress', 'duration'],
+				playlist: true, //Playlist Show
+				playlistposition: 'bottom' //Playlist Location
+				});
+			</script>
+			
+			
+		<!-- Show MEL time-->
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js'></script> 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script> 
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.4.0/moment-timezone-with-data.min.js"></script> 
+		<script async>
 
-
-	<div class="box">	
-		 <h1>Service Recordings</h1>
-		 <p><a href="../service-recordings" alt="Prior service recordings">Click here to listen to past service recordings.</a>
-		 </p>
- 	</div>
-
-	<!-- 
-	<div class="box">	
-		 <h1>Funeral Recordings</h1>
-		 <p><a href="../funeral-recordings" alt="Prior service recordings">Click here for past funeral recordings.</a>
-		 </p>
- 	</div>
-		-->
-
-	<div class="box">
-		<h1>Statement of Faith</h1>
-		<p>To read about our beliefs <a href="/statement-of-faith/">click here to view our Statement of Faith.</a></p>
-	</div>
-
-
-	<div class="box">
-		<h1>Our Address</h1>
-		<p>1431 Dohertys Road, Mt Cottrell<br/> Victoria, Australia 3024</p>
-		<a href="https://www.google.com.au/maps/place/1431+Dohertys+Rd,+Mount+Cottrell+VIC+3024/@-37.814544,144.6445463,17z/">View on Google Maps</a>
-	</div>
-
-
-	<div class="footer">
-		<a href="/"><img src="/assets/images/church.jpg" /></a>
-	</div>
-
-
-<!-- Show MEL time-->
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.4.0/moment-timezone-with-data.min.js"></script>
-	
-    <script async>
-        function showTheTime(){
-            var time = moment.tz("Australia/Melbourne");
-            $('#MelbourneTime').html(time.format('dddd h:mma') );
-        }
+		 function showTheTime(){
+		     var time = moment.tz("Australia/Melbourne");
+		     $('#MelbourneTime').html(time.format('dddd h:mma') );
+		 }
 		showTheTime();
 		setInterval(showTheTime, 60000); // update every minute (60000)
-    </script>
+		</script> 
+		
+		<!-- GA--> 
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106961573-1"></script> 
+		<script>
+		window.dataLayer = window.dataLayer || [];function gtag() {dataLayer.push(arguments)};gtag('js', new Date());gtag('config', 'UA-106961573-1');
+		</script> 
+		
+		<!-- Broadcast script --> 
+		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script> 
+		<script src="/assets/js/jquery.radiocoplayer.min.js"></script> 
+		<script>
+		$('.radioplayer').radiocoPlayer();
+		</script> 
+		
+		<!-- Broadcast status script--> 
+		<script async>
 
-
-<!-- GA-->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-106961573-1"></script>
-	<script>window.dataLayer = window.dataLayer || [];function gtag() {dataLayer.push(arguments)};gtag('js', new Date());gtag('config', 'UA-106961573-1');</script>
-
-
-	<!-- Broadcast script -->
-	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-	<script src="/assets/js/jquery.radiocoplayer.min.js"></Script>
-	<script>$('.radioplayer').radiocoPlayer();</script>
-
-
-	<!-- Broadcast status script-->
-	<script async>
 		function getStatus() {
-			$.ajaxSetup({
-				timeout: 30000
-			});
-			$.getJSON('https://public.radio.co/stations/scebd56e71/status', function (data) {
-					
-				var title = data.current_track.title;
-				var type = data.source.type;
+		$.ajaxSetup({
+		timeout: 30000
+		});
+		$.getJSON('https://public.radio.co/stations/scebd56e71/status', function (data) {
 
-					// Live broadcast
-					if (
-						type == "live") {
-							$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="green-box">Online</span></h1>');
-						}  
+		var title = data.current_track.title;
+		var type = data.source.type;
 
-					// Other broadcast
-					else if (
-						type == "automated" && title != "ACCN Melbourne - Offline") {
-							$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="green-box">Online</span></h1>');
-						} 	
-					
-					// Offline
-					else if (
-						type == "automated" && title == "ACCN Melbourne - Offline") {
-							$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="red-box">Offline</span></h1>');
-						} 
+		// Live broadcast
+		if (
+		type == "live") {
+		$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="green-box">Online</span></h1>');
+		}  
 
-					// Playing prior recordings
-					// else if (
-					// 	type == "automated" &&
-					// 	title.toLowerCase().includes("singing".toLowerCase()) &&
-					// 	(title.includes("2021") || title.includes("2020") || title.includes("2019")))
-					// 	{
-					// 		$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="green-box">Live: Previous service</span></h1>');
-					// 	}
+		// Other broadcast
+		else if (
+		type == "automated" && title != "ACCN Melbourne - Offline") {
+		$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="green-box">Online</span></h1>');
+		} 	
 
-					// fallback to nothing
-					else  {
-						$('#status').append('');
-					}
-				},
-					
-			);
+		// Offline
+		else if (
+		type == "automated" && title == "ACCN Melbourne - Offline") {
+		$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="red-box">Offline</span></h1>');
+		} 
+
+		// Playing prior recordings
+		// else if (
+		// 	type == "automated" &&
+		// 	title.toLowerCase().includes("singing".toLowerCase()) &&
+		// 	(title.includes("2021") || title.includes("2020") || title.includes("2019")))
+		// 	{
+		// 		$('#status').html('<h1 class="flex-vertical-center">Broadcast <span class="green-box">Live: Previous service</span></h1>');
+		// 	}
+
+		// fallback to nothing
+		else  {
+		$('#status').append('');
+		}
+		},
+		 
+		);
 		}
 		getStatus();
 		setInterval(getStatus, 60000); // update every minute (60000)
-	</script>
+		</script> 
+		
+		<!-- Announcement script--> 
+		<script async>
 
-		<!-- Announcement script-->
-	<script async>
-			function getAnnouncement() {
-  			  var ts = new Date().getTime();
-  			  var data1 = {_: ts};
-  			  var url = 'https://www.dl.dropboxusercontent.com/s/hinm9p7ld765p0o/announcement.json?dl=0';
+		function getAnnouncement() {
+		var ts = new Date().getTime();
+		var data1 = {_: ts};
+		var url = 'https://www.dl.dropboxusercontent.com/s/hinm9p7ld765p0o/announcement.json?dl=0';
 
-				$.getJSON(url, data1, function (data) {
-						//broadcast announcement
-						if (data.notices[0].type == "broadcast" && data.notices[0].status == "on") {
-							$('#broadcastAnnouncement').html('<strong class="notice"> ' + data.notices[0].message + ' </strong> ');
+		$.getJSON(url, data1, function (data) {
+		//broadcast announcement
+		if (data.notices[0].type == "broadcast" && data.notices[0].status == "on") {
+		$('#broadcastAnnouncement').html('<strong class="notice"> ' + data.notices[0].message + ' </strong> ');
 
-						} else {
-							$('#broadcastAnnouncement').append('');
-						};
+		} else {
+		$('#broadcastAnnouncement').append('');
+		};
 
-						//general announcement
-						if (data.notices[1].type == "general" && data.notices[1].status == "on") {
-							$('#generalAnnouncement').html('<strong class="generalAnnouncement"> ' + data.notices[1].message + ' </strong> ');
+		//general announcement
+		if (data.notices[1].type == "general" && data.notices[1].status == "on") {
+		$('#generalAnnouncement').html('<strong class="generalAnnouncement"> ' + data.notices[1].message + ' </strong> ');
 
-						} else {
-							$('#generalAnnouncement').append('');
-						}
-					},
-					
-				);
-							}
-							getAnnouncement();
-							setInterval(getAnnouncement, 300000); // update every 5 minutes (300000)
-							</script>
-
-</body>
+		} else {
+		$('#generalAnnouncement').append('');
+		}
+		},
+		 
+		);
+		}
+		getAnnouncement();
+		setInterval(getAnnouncement, 300000); // update every 5 minutes (300000)
+		</script>
+		
+			
+	</body>
 </html>
