@@ -211,3 +211,42 @@
 .progression-playlist1.progression-skin .mejs-controls .mejs-time-rail, .progression-playlist1.progression-skin .mejs-controls .mejs-time-rail .mejs-time-total {
 	min-width:0%;
 }
+
+.mejs-container .mejs-controls div {
+    width: 40px!important;
+    height: 40px!important;
+}
+
+.mejs-container .mejs-controls .mejs-duration-container {
+    float: right!important;
+}
+
+.progression-skin .mejs-controls .mejs-playpause-button-back button:before {
+    font-size: 17px;
+    content: url("../images/back-15.svg");
+    line-height: 40px;
+    text-decoration: inherit;
+    display: inline-block;
+    position: relative;
+    bottom: 1px;
+    opacity: .9;
+}
+
+.progression-skin .mejs-controls .mejs-playpause-button-back button {
+    background: none!important;
+}
+
+.progression-skin .mejs-controls .mejs-playpause-button-forward button:before {
+    font-size: 17px;
+    content: url("../images/forward-30.svg");
+    line-height: 40px;
+    text-decoration: inherit;
+    display: inline-block;
+    position: relative;
+    bottom: 1px;
+    opacity: .9;
+}
+
+.progression-skin .mejs-controls .mejs-playpause-button-forward button {
+    background: none!important;
+}
