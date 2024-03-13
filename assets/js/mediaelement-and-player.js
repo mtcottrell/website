@@ -3326,7 +3326,7 @@ if (typeof jQuery != 'undefined') {
 			var 
 				t = this,
 				seekforward = 
-				$('<div class="mejs-button mejs-playpause-button mejs-play" >' +
+				$('<div class="mejs-button mejs-playpause-button-forward mejs-play" >' +
 					'<button type="button" aria-controls="' + t.id + '" title="' + t.options.seekforwardText + '" aria-label="' + t.options.seekforwardText + '"></button>' +
 				'</div>')
 				.appendTo(controls)
@@ -3356,7 +3356,7 @@ if (typeof jQuery != 'undefined') {
 			var 
 				t = this,
 				seekbackward = 
-				$('<div class="mejs-button mejs-playpause-button mejs-play" >' +
+				$('<div class="back mejs-button mejs-playpause-button-back mejs-play" >' +
 					'<button type="button" aria-controls="' + t.id + '" title="' + t.options.seekbackwardText + '" aria-label="' + t.options.seekbackwardText + '"></button>' +
 				'</div>')
 				.appendTo(controls)
